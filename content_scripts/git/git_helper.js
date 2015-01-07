@@ -22,7 +22,7 @@ function linkTicket () {
     , jiraTicket = match[1]
     , trailing   = match[2]
 
-  // Convert the ticket number to a link 
+  // Convert the ticket number to a link
   if (jiraTicket) {
     var href = 'https://jira.brandingbrand.com/browse/' + jiraTicket
       , link = '<a href="' + href + '" class="jj_formatted">' + jiraTicket + '</a>';
@@ -57,7 +57,7 @@ function formatLinks () {
 
       text = text.replace(href, link);
     });
-    
+
     // set the text in the comment
     comment.empty();
     comment.append(text);
@@ -67,7 +67,7 @@ function formatLinks () {
 function seedPr () {
   var $field = $('#new_pull_request [name="pull_request[body]"]:not(.jj_formatted)');
 
-  if (!($field.length && !$field.val())) { return; }
+  if (!($field.length && !$field.val()) || !/pull/.test(window.location.pathname)) { return; }
 
 
   var lastTicket = '';
@@ -92,18 +92,22 @@ function seedPr () {
 
 
 // add the branch commands to the description
-var submitter      = $('.timeline-comment-header-text .author').first().text()
-  , newBranch      = $('.current-branch').last().find('.css-truncate-target').last().text()
-  , sourceBranch   = $('.current-branch').first().find('.css-truncate-target').last().text()
-  , repo           = ($('meta[name="twitter:title"]').attr('content') || '').replace(/.*\//, '')
-  , gitCommands    = 'git checkout -b ' + submitter + '-' + newBranch + ' ' + sourceBranch + ' &&<br>git pull git@github.com:' + submitter + '/' + repo + ' ' + newBranch + '\n<br>'
-  , commandButton  = '<div id="gitCommands" class="comment">' + gitCommands + '</div>'
+var submitter     = $('.timeline-comment-header-text .author').first().text()
+  , newBranch     = $('.current-branch').last().find('.css-truncate-target').last().text()
+  , sourceBranch  = $('.current-branch').first().find('.css-truncate-target').last().text()
+  , repo          = ($('meta[name="twitter:title"]').attr('content') || '').replace(/.*\//, '')
+  , pullCommand   = 'git checkout -b ' + submitter + '-' + newBranch + ' ' + sourceBranch + ' &&<br>git pull git@github.com:' + submitter + '/' + repo + ' ' + newBranch + '\n<br>'
+  , deleteCommand = 'git branch -d ' + submitter + '-' + newBranch
+  , commandButton = '<div id="gitCommands" class="comment">' +
+                      '<div class="command">' + pullCommand + '</div>' +
+                      '<div class="command">' + deleteCommand + '</div>' +
+                    '</div>';
 
 $('.timeline-comment').first().after(commandButton);
 
 // if this is a comparicon page
 if (/\/compare\//.test(window.location)) {
-  var prompt = '<div id="jira-prompt">' + 
+  var prompt = '<div id="jira-prompt">' +
                  '<input type="checkbox" id="transfer" value="code-review"> Transition ticket?<br>' +
                  '<input type="text" placeholder="Time spent">' +
                  '<input type="text" placeholder="Assign to">' +
