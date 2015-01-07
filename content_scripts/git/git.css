@@ -16,11 +16,19 @@
   word-wrap               : normal;
   margin                  : auto;
   margin-top              : -1px;
-  overflow                : auto;
-  padding                 : 10px;
-  padding-left            : 30px;
   position                : relative;
   width                   : 75%;
+  overflow                : auto;
+}
+
+#gitCommands .command {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  padding: 5px 20px;
+}
+
+#gitCommands .command::first-of-type {
+  border-top: 0px solid #ddd;
 }
 
 #jira-prompt input[type="text"] {
