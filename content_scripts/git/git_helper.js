@@ -67,7 +67,7 @@ function formatLinks () {
 function seedPr () {
   var $field = $('#new_pull_request [name="pull_request[body]"]:not(.jj_formatted)');
 
-  if (!($field.length && !$field.val()) || !/pull/.test(window.location.pathname)) { return; }
+  if (!($field.length && !$field.val()) || !/(pull|compare)/.test(window.location.pathname)) { return; }
 
 
   var lastTicket = '';
