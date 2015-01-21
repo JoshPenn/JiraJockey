@@ -90,22 +90,23 @@ function seedPr () {
 
 }
 
+if(/(pull|compare)/.test(window.location.pathname) {
+  // add the branch commands to the description
+  var submitter     = $('.timeline-comment-header-text .author').first().text()
+    , newBranch     = $('.current-branch').last().find('.css-truncate-target').last().text()
+    , sourceBranch  = $('.current-branch').first().find('.css-truncate-target').last().text()
+    , repo          = ($('meta[name="twitter:title"]').attr('content') || '').replace(/.*\//, '')
+    , pullCommand   = 'git checkout -b ' + submitter + '-' + newBranch + ' ' + sourceBranch + ' &&<br>git pull git@github.com:' + submitter + '/' + repo + ' ' + newBranch + '\n<br>'
+    , deleteCommand = 'git branch -d ' + submitter + '-' + newBranch
+    , commandButton = '<div id="gitCommands" class="comment">' +
+                        '<div class="command">' + pullCommand + '</div>' +
+                        '<div class="command">' + deleteCommand + '</div>' +
+                      '</div>';
+  
+  $('.timeline-comment').first().after(commandButton);
+}
 
-// add the branch commands to the description
-var submitter     = $('.timeline-comment-header-text .author').first().text()
-  , newBranch     = $('.current-branch').last().find('.css-truncate-target').last().text()
-  , sourceBranch  = $('.current-branch').first().find('.css-truncate-target').last().text()
-  , repo          = ($('meta[name="twitter:title"]').attr('content') || '').replace(/.*\//, '')
-  , pullCommand   = 'git checkout -b ' + submitter + '-' + newBranch + ' ' + sourceBranch + ' &&<br>git pull git@github.com:' + submitter + '/' + repo + ' ' + newBranch + '\n<br>'
-  , deleteCommand = 'git branch -d ' + submitter + '-' + newBranch
-  , commandButton = '<div id="gitCommands" class="comment">' +
-                      '<div class="command">' + pullCommand + '</div>' +
-                      '<div class="command">' + deleteCommand + '</div>' +
-                    '</div>';
-
-$('.timeline-comment').first().after(commandButton);
-
-// if this is a comparicon page
+// if this is a comparison page
 if (/\/compare\//.test(window.location)) {
   var prompt = '<div id="jira-prompt">' +
                  '<input type="checkbox" id="transfer" value="code-review"> Transition ticket?<br>' +
