@@ -90,7 +90,7 @@ function seedPr () {
 
 }
 
-if(/(pull|compare)/.test(window.location.pathname) {
+if(/(pull|compare)/.test(window.location.pathname)) {
   // add the branch commands to the description
   var submitter     = $('.timeline-comment-header-text .author').first().text()
     , newBranch     = $('.current-branch').last().find('.css-truncate-target').last().text()
@@ -102,7 +102,7 @@ if(/(pull|compare)/.test(window.location.pathname) {
                         '<div class="command">' + pullCommand + '</div>' +
                         '<div class="command">' + deleteCommand + '</div>' +
                       '</div>';
-  
+
   $('.timeline-comment').first().after(commandButton);
 }
 
