@@ -5,9 +5,14 @@
   "manifest_version" : 2,
 
   "permissions": [
+    "activeTab",
     "storage",
     "*://*/*"
   ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
   "options_page": "/views/jira/jira.html",
   "content_scripts": [
     {
@@ -30,9 +35,12 @@
       "run_at"  : "document_end",
       "matches" : ["*://localhost/*"],
       "css"     : ["assets/styling.css", "content_scripts/utilities/form_populator/populator.css"],
-      "js"      : ["lib/external/lodash.js", "lib/external/jquery.js",
+      "js"      : [  "lib/external/jquery.js",
                      "lib/helpers.js",
-                     "content_scripts/utilities/form_populator/formValues.js", "content_scripts/utilities/form_populator/nameValueMap.js", "content_scripts/utilities/form_populator/controller.js"]
+                     "content_scripts/utilities/form_populator/stores.js",
+                     "content_scripts/utilities/form_populator/nameValueMap.js",
+                     "content_scripts/utilities/form_populator/controller.js"
+                  ]
     }
   ]
 }
