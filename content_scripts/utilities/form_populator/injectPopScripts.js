@@ -1,22 +1,3 @@
-// var filesPath = [
-//   'lib/helpers.js',
-//   'lib/external/jquery.js',
-//   'content_scripts/utilities/form_populator/formValues.js',
-//   'content_scripts/utilities/form_populator/nameValueMap.js',
-//   'content_scripts/utilities/form_populator/controller.js'
-// ];
-//
-// filesPath.forEach(function(file) {
-//   injectScriptInTab(file);
-// });
-//
-// function injectScriptInTab(filePath) {
-//   chrome.tabs.executeScript({
-//     file  : filePath,
-//     runAt : 'document_end'
-//   });
-// }
-
 function runScriptInTab(script) {
   chrome.tabs.executeScript({
     code  : script
