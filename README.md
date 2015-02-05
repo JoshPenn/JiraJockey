@@ -34,7 +34,7 @@ Functionality
   - after two minutes of inactiviy on the page, the poller will cease
   - the timer is reset on a mouse move event
 
-### localhost:-
+### localhost:*
   - use the `jj` button to populate localhost forms
     - a hardcoded list of supported names/id's is maintained and must be updated if an unaccounted string is used
 
