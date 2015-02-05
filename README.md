@@ -1,12 +1,16 @@
 JiraJockey
 ==========
 
-To add to chrome, go to `menu > settings > extensions` check the `Develper mode` box. then  select `Load unpacked extension` and load the JiraJockey directory
+To add to chrome
+  - `menu > settings > extensions`
+  - check the `Develper mode` box
+  - select `Load unpacked extension`
+  - load the JiraJockey directory
 
 Functionality
 =============
 
-- Agile Board
+### Agile Board
   - Converts in sprint open ticket ticket id bar to a progress bar of sub tasks
   - Shades resolved tickets as grey
   - Shades in code review tickets as orange
@@ -14,7 +18,7 @@ Functionality
   - Sets the goal line as gold bar
   - Shades tickets in the blocked epic as purple
 
-- GitHub
+### GitHub
   - Changes ticket in title to link to jira ticket
   - Adds useful commands below PR descriptions
     - branch and pull && delete branch at the moment
@@ -22,15 +26,15 @@ Functionality
   - Scans PR submission pages and restyles the button && adds a warning if debuggin code is found
   - adds a description template in the PR submit page
 
-- Poller
+### Poller
   - all style changes listed above will execute every tenth of a second for 30 seconds to accommadate for AJAX requests and restyling in both
   - the poller will reset on click
 
-- Jira and Git
+### Jira and Git
   - after two minutes of inactiviy on the page, the poller will cease
   - the timer is reset on a mouse move event
 
-- localhost:-
+### localhost:-
   - use the `jj` button to populate localhost forms
     - a hardcoded list of supported names/id's is maintained and must be updated if an unaccounted string is used
 
