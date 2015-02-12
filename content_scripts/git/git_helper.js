@@ -49,11 +49,12 @@ function formatLinks () {
     // replace the links in the text string with link elements
     _.each(hrefs, function (href) {
       //make sure to preserve trailing elements, like <br> and <p>
-      var match    = href.match(/(http:\/\/localhost:\d+)(\/\S*)(<?.*)/) || []
+      var match    = href.match(/(http:\/\/localhost:\d+)(\/?\S*)(<?.*)/) || []
         , host     = match[1]
         , path     = match[2]
-        , trailing = match[3]
-        , link     = '<a href="' + host + path.replace(/<.*>/, '') + '" class="jj_formatted">' + path + '</a>' + trailing;
+        , trailing = match[3];
+      path = path || '/';
+      var link     = '<a href="' + host + path.replace(/<.*>/, '') + '" class="jj_formatted">' + host + path + '</a>' + trailing;
 
       text = text.replace(href, link);
     });
